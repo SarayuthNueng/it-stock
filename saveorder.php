@@ -23,12 +23,13 @@ $name = $_POST["name"];
 $office = $_POST["office"];
 $pname = $_POST["pname"];
 $position = $_POST["position"];
+$o_commitname = $_POST["o_commitname"];
 // $total_qty = $_POST["total_qty"];
 $total = $_POST["total"];
 $dttm = Date("Y-m-d G:i:s");
 //บันทึกการสั่งซื้อลงใน order_detail
 mysqli_query($conn, "BEGIN");
-$sql1    = "INSERT INTO order_head VALUES(null, '$dttm', '$name', '$office', '$pname', '$position', '$total')";
+$sql1    = "INSERT INTO order_head VALUES(null, '$dttm', '$name', '$office', '$pname', '$position', '$o_commitname', '$total')";
 $query1    = mysqli_query($conn, $sql1);
 // echo $sql1;
 // exit;
@@ -113,10 +114,10 @@ if ($query1 && $query4) {
 </script>';
 }
 ?>
-<script type="text/javascript">
-    alert("<?php echo $msg; ?>");
-    window.location = 'order-view.php?o_id=<?php echo $o_id; ?>';
-</script>
+<!-- <script type="text/javascript">
+    alert("<?php // echo $msg; ?>");
+    window.location = 'order-view.php?o_id=<?php // echo $o_id; ?>';
+</script> -->
 
 
 

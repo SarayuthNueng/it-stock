@@ -118,6 +118,8 @@ if (!$_SESSION["user_id"]) {  //check session
                                         <label class="col-form-label">ตำแหน่ง</label>
                                         <input type="text" id="position" name="position" class="form-control" placeholder="ตำแหน่ง" required>
                                     </div>
+
+                                    <input type="hidden" name="o_commitname" value="<?php echo $_SESSION['pname'].''.$_SESSION['fullname'];?>">
                                 </div>
                                 
                                 <div class="row justify-content-center mb-5 mt-3">
