@@ -21,11 +21,7 @@ if (!$_SESSION["user_id"]) {  //check session
                 <div class="row align-items-center">
                     <div class="col-sm-6">
                         <div class="breadcrumbs-area clearfix">
-                            <h4 class="page-title pull-left">รายงานวัสดุคงคลัง</h4>
-                            <ul class="breadcrumbs pull-left">
-                                <li><a href="home.php">หน้าหลัก</a></li>
-                                <li><span>ประวัติการเบิก - จ่าย</span></li>
-                            </ul>
+                            <h4 class="page-title pull-left">ประวัติการเบิก</h4>
                         </div>
                     </div>
                     <?php include 'components/username.php' ?>
