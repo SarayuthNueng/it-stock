@@ -4,6 +4,18 @@ include "db/connect-db.php";
 
 $sid = $_GET['del'];
 
+$sql1 = "SELECT * FROM material WHERE m_id = '$sid' ";
+$query = mysqli_query($conn, $sql1);
+$oo = mysqli_fetch_assoc($query);
+// echo '<pre>';
+// print_r($oo);
+// echo '</pre>';
+// exit;
+
+if($oo['m_image'] != ''){
+    unlink("uploads/" .$oo['m_image']);
+}
+
 $sql = "DELETE FROM material WHERE m_id = '$sid' ";
 $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 

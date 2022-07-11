@@ -138,7 +138,15 @@ if ($_FILES['m_image']['name'] == '') {
 	}
 	mysqli_close($conn);
 } else {
-	
+
+	$sql1 = "SELECT * FROM material WHERE m_id = '$sID' ";
+	$query = mysqli_query($conn, $sql1);
+	$oo = mysqli_fetch_assoc($query);
+
+	if ($oo['m_image'] != '') {
+		unlink("uploads/" . $oo['m_image']);
+	}
+
 	$sql = "UPDATE material SET m_name='$m_name',m_price='$m_price', m_number='$m_number', m_date='$m_date', m_time='$m_time', m_detail='$m_detail',m_image='$fileNewName', m_s_id='$m_s_id'
 	WHERE m_id = '$sID' ";
 
