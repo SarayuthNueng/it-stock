@@ -51,7 +51,7 @@ if (!$_SESSION["user_id"]) {  //check session
             </div>
             <!-- page title area end -->
             <div class="main-content-inner">
-                <button onclick="printDiv('divprint')" class="btn btn-primary" id="print-btn">Print</button>
+                <!-- <button onclick="printDiv('divprint')" class="btn btn-primary" id="print-btn">Print</button> -->
                 <div class="col-12 mt-5">
                     <div class="card">
                         <div id="divprint">
@@ -104,7 +104,11 @@ if (!$_SESSION["user_id"]) {  //check session
                                             $total += $row["d_subtotal"]; //ราคารวมออเดอร์  
                                             echo "<tr>";
                                             echo "<td>" .  @$i += 1 . "</td>";
-                                            echo "<td><img src='uploads/" . $row["m_image"] . " ' width='80'></td>";
+                                            if($row["m_image"] != ""){
+                                                echo "<td><img src='uploads/" . $row["m_image"] . " ' width='80'></td>";
+                                            }else{
+                                                echo "<td><img src='uploads/NoImage.png' ' width='80'></td>";
+                                            }
                                             echo "<td>" . $row["m_name"] . "</td>";
                                             echo "<td>" . number_format($row["m_price"], 2) . "</td>";
                                             echo "<td>" . number_format($row["d_qty"]) . "</td>";
