@@ -1,0 +1,33 @@
+<?php session_start(); ?>
+<?php
+include "db/connect-db.php";
+
+$user_id = $_GET['del_mem'];
+
+$sql = "DELETE FROM users WHERE user_id = '$user_id' ";
+$result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+
+// header('location: manage-tool-type.php?m=1');
+
+echo '
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">';
+
+echo '<script>
+            setTimeout(function() {
+            swal({
+            title: "ลบข้อมูลเรียบร้อย",
+            type: "success",
+            showConfirmButton: false,
+            timer: 1500
+            }, function() {
+                window.location = "manage-member.php"; //หน้าที่ต้องการให้กระโดดไป
+            });
+        }, 1000);
+        </script>';
+
+// //ปิดการเชื่อมต่อกับฐานข้อมูล
+// mysqli_close($conn);
+
+?>
