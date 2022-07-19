@@ -1,5 +1,11 @@
 <?php session_start(); ?>
 <?php
+include "db/connect-db.php";
+$queryorder = "SELECT * FROM order_head";
+// -- WHERE m_id=$m_id ให้แสดงเฉพาะของคนที่login
+
+$rsorder = mysqli_query($conn, $queryorder);
+// echo $queryorder;
 
 if (!$_SESSION["user_id"]) {  //check session
 
@@ -34,34 +40,48 @@ if (!$_SESSION["user_id"]) {  //check session
                     <div class="card">
                         <div class="card-body">
                             <div class="data-tables datatable-dark">
-                                <table id="dataTable3" class="table table table-stripped text-center" style="width:100%">
+                                <table id="dataTable3" class="table table table-stripped " style="width:100%">
                                     <thead>
-                                        <tr>
-                                            <th width='10px'>รหัสรายการเบิก</th>
+                                        <tr class="text-center">
+                                            <th width='10px' >รหัส</th>
                                             <th>วันที่เบิก</th>
-                                            <th>จำนวนรายการ</th>
-                                            <th>จำนวนทั้งหมด</th>
-                                            <th>ผู้รับ</th>
-                                            <th>เปิดดู</th>
+                                            <th>ชื่อผู้เบิกของ</th>
+                                            <th>ชื่อผู้อนุมัติ</th>
+                                            <th>ราคารวม(บาท)</th>
+                                            <th>ดูรายละเอียด</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td><button class="btn btn-primary">เปิดดู</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer (CEO)</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2009/10/09</td>
-                                            <td><button class="btn btn-primary">เปิดดู</td>
-                                        </tr>
+                                        <?php foreach ($rsorder as $row) { ?>
+                                            <tr>
+                                                <td class="text-center"><?php echo $row['o_id']; ?></td>
+                                                <td class="text-center"><?php echo $row['o_dttm']; ?></td>
+                                                <td>
+                                                    <?php
+                                                    echo '<b>';
+                                                    echo $row['o_pname'];
+                                                    echo $row['o_name'];
+                                                    echo '</b>';
+                                                    echo '<br>';
+                                                    echo '<b>' . 'หน่วยงาน' . '</b>' . '&nbsp;' .  $row['o_office'] . '<b>' . ' ตำแหน่ง ' . '</b>' . $row['o_position'];
+                                                    ?>
+
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php
+                                                    echo '<b>';
+                                                    echo $row['o_commitname'];
+                                                    echo '</b>';
+                                                    ?>
+                                                </td>
+                                                <td class="text-center"><?php echo number_format($row['o_total'], 2); ?></td>
+                                                <td class="text-center">
+                                                    <?php
+                                                    $o_id = $row['o_id']; //order id
+                                                    echo "<a href='view-order.php?o_id=$o_id&do=view-order' class='btn btn-info btn-xs'>เปิดดู</a>" ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -39,7 +39,7 @@ if (!$_SESSION["user_id"]) {  //check session
                 <div class="row align-items-center">
                     <div class="col-sm-6">
                         <div class="breadcrumbs-area clearfix">
-                            <h4 class="page-title pull-left">รายละเอียดการเบิก</h4>
+                            <h4 class="page-title pull-left">รายละเอียดประวัติการเบิก</h4>
                         </div>
                     </div>
                     <?php include 'components/username.php' ?>
@@ -100,9 +100,9 @@ if (!$_SESSION["user_id"]) {  //check session
                                             $total += $row["d_subtotal"]; //ราคารวมออเดอร์  
                                             echo "<tr>";
                                             echo "<td>" .  @$i += 1 . "</td>";
-                                            if($row["m_image"] != ""){
+                                            if ($row["m_image"] != "") {
                                                 echo "<td><img src='uploads/" . $row["m_image"] . " ' width='80'></td>";
-                                            }else{
+                                            } else {
                                                 echo "<td><img src='uploads/NoImage.png' ' width='80'></td>";
                                             }
                                             echo "<td>" . $row["m_name"] . "</td>";
@@ -123,7 +123,10 @@ if (!$_SESSION["user_id"]) {  //check session
                                 </div>
                                 <div class="row justify-content-end mb-5 mt-3">
                                     <div class="col-md-2">
-                                        <a type="button" class="btn btn-primary btn-block" href="home.php">ตกลง</a>
+                                        <button type="button" onclick="history.back(-1)" class="btn btn-secondary btn-block"><i class="fa fa-times"></i> ย้อนกลับ</button>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a type="button" class="btn btn-primary btn-block" href="#">พิมพ์</a>
                                     </div>
                                 </div>
 
