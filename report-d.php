@@ -14,7 +14,7 @@
             <input type="date" name="de" required class="form-control">
         </div>
         <div class="col-sm-1">
-            <button type="submit" name="act" value="ragedate" class="btn btn-primary">ค้นหา</button>
+            <button type="submit" name="act" value="daterange" class="btn btn-primary">ค้นหา</button>
         </div>
     </div>
 </form>
