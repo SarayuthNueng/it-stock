@@ -40,7 +40,8 @@
                             <a href="javascript:void(0)" aria-expanded="true"><i class="ti-printer"></i><span>รายงานเบิก - จ่าย</span></a>
                             <ul class="collapse">
                                 <li><a href="history-report.php">ประวัติการเบิก - จ่าย</a></li>
-                                <li><a href="report.php">รายงานเบิก - จ่าย /รายเดือน</a></li>
+                                <li><a href="report.php">รายงานเบิก - จ่าย /วัน/เดือน/ปี</a></li>
+                                <li><a href="report-office.php">รายงานเบิก - จ่าย /หน่วยงาน</a></li>
                             </ul>
                         </li>
                         <li>
@@ -59,8 +60,9 @@
                         <li>
                             <a href="javascript:void(0)" aria-expanded="true"><i class="ti-printer"></i><span>รายงานเบิก - จ่าย</span></a>
                             <ul class="collapse">
-                                <li><a href="history-report.php">ประวัติการเบิก - จ่าย</a></li>
-                                <li><a href="report.php">รายงานเบิก - จ่าย /รายเดือน</a></li>
+                                <!-- <li><a href="history-report.php">ประวัติการเบิก - จ่าย</a></li> -->
+                                <li><a href="report.php">รายงานเบิก - จ่าย /วัน/เดือน/ปี</a></li>
+                                <li><a href="report-office.php">รายงานเบิก - จ่าย /หน่วยงาน</a></li>
                             </ul>
                         </li>
                         <li>

@@ -77,33 +77,36 @@ $total = implode(",", $total);
 </p>
 <div class="col-sm-12 mt-5">
     <h3 class="text-center mb-3">รายการแยกตามปีทั้งหมด</h3>
-    <table class="table table-striped" border="1" cellpadding="0" cellspacing="0" align="center">
-        <thead>
-            <tr class="table-primary">
-                <th width="20%">วัน/เดือน/ปี</th>
-                <th width="10%">
-                    <center>ยอดรวมแต่ละปี</center>
-                </th>
-            </tr>
-        </thead>
+    <div class="data-tables ">
+        <div class="table-responsive">
+            <table id="dataTable" class=" table table table-stripped text-center table-info" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>วัน/เดือน/ปี</th>
+                        <th>ยอดรวมแต่ละวัน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $ototal = 0;
+                    while ($row2 = mysqli_fetch_array($result)) {
+                    ?>
+                        <tr>
+                            <td><?php echo $row2['o_dttm']; ?></td>
+                            <td align="right"><?php echo number_format($row2['total'], 2); ?>&nbsp;บาท</td>
+                        </tr>
+                    <?php $ototal += $row2['total'];
+                    } ?>
+                    <tr>
+                        <td align="center"><b>รวมทั้งหมด(ทุกวัน)</b></td>
+                        <td align="right"><b>
+                                <?php echo number_format($ototal, 2); ?>&nbsp;บาท</b>
+                        </td>
 
-
-        <?php
-        $ototal = 0;
-        while ($row2 = mysqli_fetch_array($result)) {
-        ?>
-            <tr>
-                <td><?php echo $row2['o_dttm']; ?></td>
-                <td align="right"><?php echo number_format($row2['total'], 2); ?></td>
-            </tr>
-        <?php $ototal += $row2['total']; } ?>
-        <tr class="table-danger">
-            <td align="center">รวมทั้งหมด(ทุกปี)</td>
-            <td align="right"><b>
-                    <?php echo number_format($ototal, 2); ?></b>
-            </td>
-            
-        </tr>
-    </table>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <?php mysqli_close($conn); ?>

@@ -1,6 +1,6 @@
 <form action="" method="get" class="form-horizontal">
     <h3>เลือกช่วงวันที่ในการเรียกดูยอดขาย</h3>
-    <div class="row form-group">
+    <div class="row form-group mt-4 mb-4">
         <div class="col-sm-1 control-label">
             Start
         </div>
@@ -13,16 +13,22 @@
         <div class="col-sm-3">
             <input type="date" name="de" required class="form-control">
         </div>
-        <div class="col-sm-1">
-            <button type="submit" name="act" value="ragedate" class="btn btn-primary">ค้นหา</button>
+        <div class="col-sm-1 mb-4">
+            <button type="submit" name="act" value="daterange" class="btn btn-primary">ค้นหา</button>
         </div>
     </div>
 </form>
 <?php
+
+$ds = $_GET['ds']; //date start
+$de = $_GET['de']; //date end
+
 $query =
     "SELECT SUM(o_total) AS total, 
     DATE_FORMAT(o_dttm, '%d-%M-%Y') AS o_dttm
-    FROM order_head
+    FROM order_head 
+    WHERE o_dttm BETWEEN '$ds 0:0:0.000000' 
+    AND '$de 23:59:59.000000'
     GROUP BY DATE_FORMAT(o_dttm, '%Y-%m-%d')
     ORDER BY DATE_FORMAT(o_dttm, '%Y-%m-%d') DESC
     ";
@@ -46,7 +52,11 @@ $total = implode(",", $total);
 
 
 ?>
-<h3 align="center">รายงานแยกตามวัน ในแบบกราฟ</h3>
+<h3 align="center">รายงานแยกตามวันที่ ในแบบกราฟ</h3>
+<p class="mt-4">
+    วันที่เริ่มต้น : <?php echo date('d/m/y', strtotime($ds));?>
+    ถึงวันที่ : <?php echo date('d/m/y', strtotime($de));?>
+</p>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
 <hr>
