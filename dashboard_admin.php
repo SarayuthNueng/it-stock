@@ -1,5 +1,15 @@
 <?php session_start(); ?>
 <?php
+include "db/connect-db.php";
+
+$sql = "SELECT COUNT(o_id) as count_oh FROM order_head";
+$coh = $conn->query($sql);
+
+$sql = "SELECT COUNT(m_id) as count_m FROM material";
+$cm = $conn->query($sql);
+
+$sql = "SELECT COUNT(s_id) as count_s FROM type_stock";
+$type = $conn->query($sql);
 
 if (!$_SESSION["user_id"]) {  //check session
 
@@ -28,62 +38,216 @@ if (!$_SESSION["user_id"]) {  //check session
             </div>
             <!-- page title area end -->
             <div class="main-content-inner">
-                <div class="row">
-                    <!-- seo fact area start -->
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-md-6 mt-5 mb-3">
-                                <div class="card">
-                                    <div class="seo-fact sbg1">
-                                        <div class="p-4 d-flex justify-content-between align-items-center">
-                                            <div class="seofct-icon"><i class="ti-thumb-up"></i> รายการเบิกใหม่</div>
-                                            <h2>2,315</h2>
+                <div class="sales-report-area mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="single-report mb-xs-30">
+                                <?php foreach ($coh as $row) : ?>
+                                    <div class="s-report-inner pr--20 pt--30 mb-3">
+                                        <div class="icon"><i class="fa fa-file-text-o"></i></div>
+                                        <div class="s-report-title d-flex justify-content-between">
+                                            <h4 class="header-title mb-0">รายการเบิกทั้งหมด</h4>
                                         </div>
-                                        <canvas id="seolinechart1" height="50"></canvas>
+                                        <div class="d-flex justify-content-between pb-2">
+                                            <h2><?= $row['count_oh']; ?></h2>
+                                        </div>
                                     </div>
-                                </div>
+                                <?php endforeach; ?>
+                                <canvas id="myChartLine1" width="100%"></canvas>
+                                <script>
+                                    const ctx1 = document.getElementById('myChartLine1');
+                                    const myChartLine1 = new Chart(ctx1, {
+                                        type: 'line',
+                                        data: {
+                                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                            datasets: [{
+                                                label: '# of Votes',
+                                                data: [12, 19, 3, 5, 2, 3],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132)',
+                                                    'rgba(54, 162, 235)',
+                                                    'rgba(255, 206, 86)',
+                                                    'rgba(75, 192, 192)',
+                                                    'rgba(153, 102, 255)',
+                                                    'rgba(255, 159, 64)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)',
+                                                    'rgba(54, 162, 235, 1)',
+                                                    'rgba(255, 206, 86, 1)',
+                                                    'rgba(75, 192, 192, 1)',
+                                                    'rgba(153, 102, 255, 1)',
+                                                    'rgba(255, 159, 64, 1)'
+                                                ],
+                                                borderWidth: 2
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: false
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
                             </div>
-                            <div class="col-md-6 mt-md-5 mb-3">
-                                <div class="card">
-                                    <div class="seo-fact sbg2">
-                                        <div class="p-4 d-flex justify-content-between align-items-center">
-                                            <div class="seofct-icon"><i class="ti-share"></i> จำนวนวัสดุ</div>
-                                            <h2>3,984</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-report mb-xs-30">
+                                <?php foreach ($cm as $row) : ?>
+                                    <div class="s-report-inner pr--20 pt--30 mb-3">
+                                        <div class="icon"><i class="fa fa-print"></i></div>
+                                        <div class="s-report-title d-flex justify-content-between">
+                                            <h4 class="header-title mb-0">จำนวนวัสดุทั้งหมด</h4>
                                         </div>
-                                        <canvas id="seolinechart2" height="50"></canvas>
+                                        <div class="d-flex justify-content-between pb-2">
+                                            <h2><?= $row['count_m']; ?></h2>
+                                        </div>
                                     </div>
-                                </div>
+                                <?php endforeach; ?>
+                                <canvas id="myChartLine2" width="100%"></canvas>
+                                <script>
+                                    const ctx2 = document.getElementById('myChartLine2');
+                                    const myChartLine2 = new Chart(ctx2, {
+                                        type: 'line',
+                                        data: {
+                                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                            datasets: [{
+                                                label: '# of Votes',
+                                                data: [12, 19, 3, 5, 2, 3],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132)',
+                                                    'rgba(54, 162, 235)',
+                                                    'rgba(255, 206, 86)',
+                                                    'rgba(75, 192, 192)',
+                                                    'rgba(153, 102, 255)',
+                                                    'rgba(255, 159, 64)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)',
+                                                    'rgba(54, 162, 235, 1)',
+                                                    'rgba(255, 206, 86, 1)',
+                                                    'rgba(75, 192, 192, 1)',
+                                                    'rgba(153, 102, 255, 1)',
+                                                    'rgba(255, 159, 64, 1)'
+                                                ],
+                                                borderWidth: 2
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: false
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
                             </div>
-                            <div class="col-md-6 mb-3 mb-lg-0">
-                                <div class="card">
-                                    <div class="seo-fact sbg3">
-                                        <div class="p-4 d-flex justify-content-between align-items-center">
-                                            <div class="seofct-icon">อนุมัติ</div>
-                                            <canvas id="seolinechart3" height="60"></canvas>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-report">
+                                <div class="s-report-inner pr--20 pt--30 mb-3">
+                                    <div class="icon"><i class="fa fa-filter"></i></div>
+                                    <?php foreach ($type as $row) : ?>
+                                        <div class="s-report-title d-flex justify-content-between">
+                                            <h4 class="header-title mb-0">จำนวนประเภทวัสดุทั้งหมด</h4>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="seo-fact sbg4">
-                                        <div class="p-4 d-flex justify-content-between align-items-center">
-                                            <div class="seofct-icon">ไม่อนุมัติ</div>
-                                            <canvas id="seolinechart4" height="60"></canvas>
+                                        <div class="d-flex justify-content-between pb-2">
+                                            <h2><?= $row['count_s']; ?></h2>
                                         </div>
-                                    </div>
                                 </div>
+                            <?php endforeach; ?>
+                            <canvas id="myChartLine3" width="100%"></canvas>
+                                <script>
+                                    const ctx3 = document.getElementById('myChartLine3');
+                                    const myChartLine3 = new Chart(ctx3, {
+                                        type: 'line',
+                                        data: {
+                                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                            datasets: [{
+                                                label: '# of Votes',
+                                                data: [12, 19, 3, 5, 2, 3],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132)',
+                                                    'rgba(54, 162, 235)',
+                                                    'rgba(255, 206, 86)',
+                                                    'rgba(75, 192, 192)',
+                                                    'rgba(153, 102, 255)',
+                                                    'rgba(255, 159, 64)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)',
+                                                    'rgba(54, 162, 235, 1)',
+                                                    'rgba(255, 206, 86, 1)',
+                                                    'rgba(75, 192, 192, 1)',
+                                                    'rgba(153, 102, 255, 1)',
+                                                    'rgba(255, 159, 64, 1)'
+                                                ],
+                                                borderWidth: 2
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: false
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>
-                    <!-- seo fact area end -->
+                </div>
 
+
+                <div class="row">
                     <!-- Statistics area start -->
                     <div class="col-lg-8 mt-5">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="header-title">User Statistics</h4>
-                                <div id="user-statistics"></div>
+                                <canvas id="myChartBar4" width="100%"></canvas>
+                                <script>
+                                    const ctx4 = document.getElementById('myChartBar4');
+                                    const myChartBar4 = new Chart(ctx4, {
+                                        type: 'bar',
+                                        responsive: true,
+                                        data: {
+                                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                            datasets: [{
+                                                label: '# of Votes',
+                                                data: [12, 19, 3, 5, 2, 3],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132)',
+                                                    'rgba(54, 162, 235)',
+                                                    'rgba(255, 206, 86)',
+                                                    'rgba(75, 192, 192)',
+                                                    'rgba(153, 102, 255)',
+                                                    'rgba(255, 159, 64)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)',
+                                                    'rgba(54, 162, 235, 1)',
+                                                    'rgba(255, 206, 86, 1)',
+                                                    'rgba(75, 192, 192, 1)',
+                                                    'rgba(153, 102, 255, 1)',
+                                                    'rgba(255, 159, 64, 1)'
+                                                ],
+                                                borderWidth: 0
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -93,7 +257,26 @@ if (!$_SESSION["user_id"]) {  //check session
                         <div class="card h-full">
                             <div class="card-body">
                                 <h4 class="header-title">Advertising & Marketing</h4>
-                                <canvas id="seolinechart8" height="233"></canvas>
+                                <canvas id="myChartDoughnut" width="100%"></canvas>
+                                <script>
+                                    const ctx5 = document.getElementById('myChartDoughnut');
+                                    const myChartDoughnut = new Chart(ctx5, {
+                                        type: 'doughnut',
+                                        data: {
+                                            labels: ['Red', 'Blue', 'Yellow'],
+                                            datasets: [{
+                                                label: '# of Votes',
+                                                data: [12, 19, 3],
+                                                backgroundColor: [
+                                                    'rgb(255, 99, 132)',
+                                                    'rgb(54, 162, 235)',
+                                                    'rgb(255, 205, 86)'
+                                                ],
+                                                hoverOffset: 4
+                                            }]
+                                        }
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>
