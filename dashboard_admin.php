@@ -53,44 +53,6 @@ if (!$_SESSION["user_id"]) {  //check session
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
-                                <canvas id="myChartLine1" width="100%"></canvas>
-                                <script>
-                                    const ctx1 = document.getElementById('myChartLine1');
-                                    const myChartLine1 = new Chart(ctx1, {
-                                        type: 'line',
-                                        data: {
-                                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                                            datasets: [{
-                                                label: '# of Votes',
-                                                data: [12, 19, 3, 5, 2, 3],
-                                                backgroundColor: [
-                                                    'rgba(255, 99, 132)',
-                                                    'rgba(54, 162, 235)',
-                                                    'rgba(255, 206, 86)',
-                                                    'rgba(75, 192, 192)',
-                                                    'rgba(153, 102, 255)',
-                                                    'rgba(255, 159, 64)'
-                                                ],
-                                                borderColor: [
-                                                    'rgba(255, 99, 132, 1)',
-                                                    'rgba(54, 162, 235, 1)',
-                                                    'rgba(255, 206, 86, 1)',
-                                                    'rgba(75, 192, 192, 1)',
-                                                    'rgba(153, 102, 255, 1)',
-                                                    'rgba(255, 159, 64, 1)'
-                                                ],
-                                                borderWidth: 2
-                                            }]
-                                        },
-                                        options: {
-                                            scales: {
-                                                y: {
-                                                    beginAtZero: false
-                                                }
-                                            }
-                                        }
-                                    });
-                                </script>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -106,44 +68,6 @@ if (!$_SESSION["user_id"]) {  //check session
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
-                                <canvas id="myChartLine2" width="100%"></canvas>
-                                <script>
-                                    const ctx2 = document.getElementById('myChartLine2');
-                                    const myChartLine2 = new Chart(ctx2, {
-                                        type: 'line',
-                                        data: {
-                                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                                            datasets: [{
-                                                label: '# of Votes',
-                                                data: [12, 19, 3, 5, 2, 3],
-                                                backgroundColor: [
-                                                    'rgba(255, 99, 132)',
-                                                    'rgba(54, 162, 235)',
-                                                    'rgba(255, 206, 86)',
-                                                    'rgba(75, 192, 192)',
-                                                    'rgba(153, 102, 255)',
-                                                    'rgba(255, 159, 64)'
-                                                ],
-                                                borderColor: [
-                                                    'rgba(255, 99, 132, 1)',
-                                                    'rgba(54, 162, 235, 1)',
-                                                    'rgba(255, 206, 86, 1)',
-                                                    'rgba(75, 192, 192, 1)',
-                                                    'rgba(153, 102, 255, 1)',
-                                                    'rgba(255, 159, 64, 1)'
-                                                ],
-                                                borderWidth: 2
-                                            }]
-                                        },
-                                        options: {
-                                            scales: {
-                                                y: {
-                                                    beginAtZero: false
-                                                }
-                                            }
-                                        }
-                                    });
-                                </script>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -159,44 +83,6 @@ if (!$_SESSION["user_id"]) {  //check session
                                         </div>
                                 </div>
                             <?php endforeach; ?>
-                            <canvas id="myChartLine3" width="100%"></canvas>
-                                <script>
-                                    const ctx3 = document.getElementById('myChartLine3');
-                                    const myChartLine3 = new Chart(ctx3, {
-                                        type: 'line',
-                                        data: {
-                                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                                            datasets: [{
-                                                label: '# of Votes',
-                                                data: [12, 19, 3, 5, 2, 3],
-                                                backgroundColor: [
-                                                    'rgba(255, 99, 132)',
-                                                    'rgba(54, 162, 235)',
-                                                    'rgba(255, 206, 86)',
-                                                    'rgba(75, 192, 192)',
-                                                    'rgba(153, 102, 255)',
-                                                    'rgba(255, 159, 64)'
-                                                ],
-                                                borderColor: [
-                                                    'rgba(255, 99, 132, 1)',
-                                                    'rgba(54, 162, 235, 1)',
-                                                    'rgba(255, 206, 86, 1)',
-                                                    'rgba(75, 192, 192, 1)',
-                                                    'rgba(153, 102, 255, 1)',
-                                                    'rgba(255, 159, 64, 1)'
-                                                ],
-                                                borderWidth: 2
-                                            }]
-                                        },
-                                        options: {
-                                            scales: {
-                                                y: {
-                                                    beginAtZero: false
-                                                }
-                                            }
-                                        }
-                                    });
-                                </script>
                             </div>
                         </div>
                     </div>
